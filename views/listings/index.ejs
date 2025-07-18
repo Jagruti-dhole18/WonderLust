@@ -1,5 +1,6 @@
 <% layout('layouts/boilerplate') %>
 
+<div class="container">
 <!-- <h1>All Listings</h1> -->
 <!-- <form method="GET" action="/listings/new">
         <button><b>Create New Listing</b></button>
@@ -105,28 +106,30 @@
 </div>
   </div>
 </div>
-<div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 mt-3">
+<div class="row g-3 mt-3">
   <% for( let listing of allListings){%>
-  <div class="card col listing-card">
-    <img
-      src="<%=listing.image.url%>"
-      class="card-img"
-      alt="listing_image"
-      style="height: 20rem"
-    />
-    <div class="card-body"><br>
-      <h5 class="card-title"><b><%=listing.title%></b></h5>
-      <h6 class="card-price">
-        &#8377; <%=listing.price.toLocaleString("en-IN")%> / Night
-      </h6>
-      <i class="tax-info"> &nbsp;&nbsp;+18% GST</i>
-      <br>
-      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p> -->
-      <!-- <p class="rating"><b>Rating:<%=listing.rating%></b></p> -->
-      <a href="/listings/<%=listing._id%>" class="btn btn-primary">Show More</a>
+  <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch">
+    <div class="card listing-card w-100">
+      <img
+        src="<%=listing.image.url%>"
+        class="card-img img-fluid"
+        alt="listing_image"
+      />
+      <div class="card-body"><br>
+        <h5 class="card-title"><b><%=listing.title%></b></h5>
+        <h6 class="card-price">
+          &#8377; <%=listing.price.toLocaleString("en-IN")%> / Night
+        </h6>
+        <i class="tax-info"> &nbsp;&nbsp;+18% GST</i>
+        <br>
+        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p> -->
+        <!-- <p class="rating"><b>Rating:<%=listing.rating%></b></p> -->
+        <a href="/listings/<%=listing._id%>" class="btn btn-primary">Show More</a>
+      </div>
     </div>
   </div>
   <%}%>
+</div>
 </div>
 <script>
   let taxSwitch=document.getElementById("flexSwitchCheckDefault");

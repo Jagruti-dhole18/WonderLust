@@ -3,12 +3,12 @@ body{
   font-optical-sizing: auto;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  /* font-weight: <weight>;
-  font-style: normal; */
+  min-height: 100vh;
 }
 .container{
     flex: 1;
+    width: 100%;
+    max-width: 1200px;
 }
 .navbar{
    height:5rem;
@@ -17,12 +17,76 @@ body{
 
 .fa-airbnb{
     color:brown;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .nav-link{
     color:#222222 !important;
 }
+
+    .navbar {
+      height: 5rem;
+      background-color: whitesmoke;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1030;
+    }
+
+    .navbar-toggler {
+      border: none;
+      z-index: 10000;
+    }
+
+    .navbar-nav .nav-link {
+      color: #222 !important;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+    }
+
+    .navbar-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 9998;
+    }
+
+    body.navbar-open .navbar-backdrop {
+      display: block;
+    }
+
+    body.navbar-open {
+      overflow: hidden !important;
+      touch-action: none;
+    }
+
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        background: #fff !important;
+        z-index: 9999 !important;
+        position: fixed !important;
+        top: 5rem;
+        left: 0;
+        width: 100vw;
+        min-height: 100vh;
+        padding: 2rem 1rem;
+      }
+
+      .navbar-nav {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: 100%;
+      }
+
+      .navbar-nav .nav-link {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        font-size: 1.2rem;
+      }
+    }
 
 .footer{
  width: 100%;
@@ -30,7 +94,7 @@ body{
 
 .f-info-links a{
     text-decoration: none;
-    color: 222222;
+    color: #222222;
 }
 
 .f-info-links a:hover{
@@ -48,43 +112,48 @@ body{
     vertical-align: middle;
 }
 .f-info-socials i{
-    font-size:1.5rems;
+    font-size:1.5rem;
     margin-right: 1rem;
 }
 .f-info{
     text-align: center;
    display: flex;
-   height: 8rem;
+   flex-wrap: wrap;
+   height: auto;
     background-color: rgb(221, 220, 220);
-    flex-wrap: wrap;
-    align-items:space-evenly ;
+    align-items: center;
     justify-content: center;
     width: 100%;
+    padding: 1rem 0;
 }
-/* card */
-.listing-card{
-    border:none !important;
-    margin-bottom: 2rem;
-
-}
-
-.card-img{
-    border-radius: 2rem !important;
-    width: 100% !important;
-    object-fit: cover !important;
-    transition: box-shadow 0s ease-in-out;
+ /* Listing Card Image */
+.card-img,
+.show-image {
+  width: 100%;
+  height: 250px; /* ✅ fixed height for uniformity */
+  object-fit: cover;
+  border-radius: 1.5rem !important;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
-.card-img:hover{
-    box-shadow: 5px 5px 15px rgba(8, 8, 8, 0.6);
-    transition: box-shadow ease-in-out;
-}
-.card-body{
-    padding: 0 !important;
+/* Hover effect */
+.card-img:hover {
+  box-shadow: 5px 5px 15px rgba(8, 8, 8, 0.6);
 }
 
-.card-body p{
-    font-weight: 400 !important;
+/* Card Layout */
+.listing-card {
+  border: none !important;
+  margin-bottom: 2rem;
+  min-width: 0;
+}
+
+/* Card body */
+.card-body {
+  padding: 0 !important;
+}
+.card-body p {
+  font-weight: 400 !important;
 }
 .btn{
     background-color: burlywood !important;
@@ -97,7 +166,46 @@ body{
     transition: box-shadow ease-in-out;
 }
 
-.show-image{
-    height: 50vh !important;
+/* .show-image{
+    width: 100%;
+    height: 25rem !important;
+    max-height: 28rem;
     border-radius: 2rem !important;
+    object-fit: cover;
+} */
+
+@media (max-width: 991px) {
+  .card-img,
+  .show-image {
+    height: 200px; /* ⬇ slightly shorter on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .card-img,
+  .show-image {
+    height: 150px; /* ⬇ even smaller on mobile */
+    border-radius: 1rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    height: 3.5rem;
+  }
+  .fa-airbnb {
+    font-size: 1.5rem;
+  }
+  .f-info {
+    flex-direction: column;
+    height: auto;
+    padding: 0.5rem 0;
+  }
+  .show-image, .card-img {
+    max-height: 150px;
+    border-radius: 1rem !important;
+  }
+  .container {
+    padding: 0 0.5rem;
+  }
 }
